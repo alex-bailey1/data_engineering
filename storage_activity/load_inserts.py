@@ -28,7 +28,7 @@ def row2vals(row):
 		census = "CensusTract"
 		citizen = "Citizen"
 	else:
-		census = "TractID"
+		census = "TractId"
 		citizen = "VotingAgeCitizen"
 
 	print(Year)
