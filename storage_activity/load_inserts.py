@@ -191,7 +191,8 @@ def load(conn, icmdlist):
 		for cmd in icmdlist:
 			# print (cmd)
 			cursor.execute(cmd)
-			cursor.execute(f"ALTER TABLE {TableName} ADD PRIMARY KEY (Year, CensusTract);")
+		
+		cursor.execute(f"ALTER TABLE {TableName} ADD PRIMARY KEY (Year, CensusTract);")
 
 		elapsed = time.perf_counter() - start
 		print(f'Finished Loading. Elapsed Time: {elapsed:0.4} seconds')
