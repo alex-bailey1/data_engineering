@@ -30,6 +30,9 @@ def row2vals(row):
 	else:
 		census = "TractID"
 		citizen = "VotingAgeCitizen"
+
+	print(Year)
+	print(type(Year))
         
 	ret = f"""
 		{Year},                          -- Year
