@@ -22,47 +22,55 @@ def row2vals(row):
 			row[key] = 0
 		row['County'] = row['County'].replace('\'','')  # eliminate quotes within literals
 
-    if(Year == 2015)
-        ret = f"""
-           {Year},                          -- Year
-           {row['CensusTract']},            -- CensusTract
-           '{row['State']}',                -- State
-           '{row['County']}',               -- County
-           {row['TotalPop']},               -- TotalPop
-           {row['Men']},                    -- Men
-           {row['Women']},                  -- Women
-           {row['Hispanic']},               -- Hispanic
-           {row['White']},                  -- White
-           {row['Black']},                  -- Black
-           {row['Native']},                 -- Native
-           {row['Asian']},                  -- Asian
-           {row['Pacific']},                -- Pacific
-           {row['Citizen']},                -- Citizen
-           {row['Income']},                 -- Income
-           {row['IncomeErr']},              -- IncomeErr
-           {row['IncomePerCap']},           -- IncomePerCap
-           {row['IncomePerCapErr']},        -- IncomePerCapErr
-           {row['Poverty']},                -- Poverty
-           {row['ChildPoverty']},           -- ChildPoverty
-           {row['Professional']},           -- Professional
-           {row['Service']},                -- Service
-           {row['Office']},                 -- Office
-           {row['Construction']},           -- Construction
-           {row['Production']},             -- Production
-           {row['Drive']},                  -- Drive
-           {row['Carpool']},                -- Carpool
-           {row['Transit']},                -- Transit
-           {row['Walk']},                   -- Walk
-           {row['OtherTransp']},            -- OtherTransp
-           {row['WorkAtHome']},             -- WorkAtHome
-           {row['MeanCommute']},            -- MeanCommute
-           {row['Employed']},               -- Employed
-           {row['PrivateWork']},            -- PrivateWork
-           {row['PublicWork']},             -- PublicWork
-           {row['SelfEmployed']},           -- SelfEmployed
-           {row['FamilyWork']},             -- FamilyWork
-           {row['Unemployment']}            -- Unemployment
-        """
+	census = ""
+	citizen = ""
+    if(Year == 2015):
+		census = "CensusTract"
+		citizen = "Citizen"
+	else:
+		census = "TractID"
+		citizen = "VotingAgeCitizen"
+        
+	ret = f"""
+		{Year},                          -- Year
+		{row[census]},            -- CensusTract
+		'{row['State']}',                -- State
+		'{row['County']}',               -- County
+		{row['TotalPop']},               -- TotalPop
+		{row['Men']},                    -- Men
+		{row['Women']},                  -- Women
+		{row['Hispanic']},               -- Hispanic
+		{row['White']},                  -- White
+		{row['Black']},                  -- Black
+		{row['Native']},                 -- Native
+		{row['Asian']},                  -- Asian
+		{row['Pacific']},                -- Pacific
+		{row[citizen]},                -- Citizen
+		{row['Income']},                 -- Income
+		{row['IncomeErr']},              -- IncomeErr
+		{row['IncomePerCap']},           -- IncomePerCap
+		{row['IncomePerCapErr']},        -- IncomePerCapErr
+		{row['Poverty']},                -- Poverty
+		{row['ChildPoverty']},           -- ChildPoverty
+		{row['Professional']},           -- Professional
+		{row['Service']},                -- Service
+		{row['Office']},                 -- Office
+		{row['Construction']},           -- Construction
+		{row['Production']},             -- Production
+		{row['Drive']},                  -- Drive
+		{row['Carpool']},                -- Carpool
+		{row['Transit']},                -- Transit
+		{row['Walk']},                   -- Walk
+		{row['OtherTransp']},            -- OtherTransp
+		{row['WorkAtHome']},             -- WorkAtHome
+		{row['MeanCommute']},            -- MeanCommute
+		{row['Employed']},               -- Employed
+		{row['PrivateWork']},            -- PrivateWork
+		{row['PublicWork']},             -- PublicWork
+		{row['SelfEmployed']},           -- SelfEmployed
+		{row['FamilyWork']},             -- FamilyWork
+		{row['Unemployment']}            -- Unemployment
+	"""
         
 	return ret
 
