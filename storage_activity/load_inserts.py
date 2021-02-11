@@ -24,7 +24,7 @@ def row2vals(row):
 
 	census = ""
 	citizen = ""
-    if(Year == 2015):
+	if(Year == 2015):
 		census = "CensusTract"
 		citizen = "Citizen"
 	else:
