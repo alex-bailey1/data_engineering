@@ -7,9 +7,9 @@ import argparse
 import re
 import csv
 
-DBname = "storact"
-DBuser = "sauser"
-DBpwd = "hello"
+DBname = "class_activity"
+DBuser = "alex"
+DBpwd = "alex"
 TableName = 'CensusData'
 Datafile = "filedoesnotexist"  # name of the data file to be loaded
 CreateDB = False  # indicates whether the DB table should be (re)-created
