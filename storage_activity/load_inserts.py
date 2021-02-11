@@ -175,9 +175,10 @@ def createTable(conn):
             	FamilyWork          DECIMAL,
             	Unemployment        DECIMAL
          	);	
-         	ALTER TABLE {TableName} ADD PRIMARY KEY (Year, CensusTract);
+         	
          	CREATE INDEX idx_{TableName}_State ON {TableName}(State);
     	""")
+	# ALTER TABLE {TableName} ADD PRIMARY KEY (Year, CensusTract);
 
 		print(f"Created {TableName}")
 
@@ -190,6 +191,7 @@ def load(conn, icmdlist):
 		for cmd in icmdlist:
 			# print (cmd)
 			cursor.execute(cmd)
+			cursor.execute(f"ALTER TABLE {TableName} ADD PRIMARY KEY (Year, CensusTract);")
 
 		elapsed = time.perf_counter() - start
 		print(f'Finished Loading. Elapsed Time: {elapsed:0.4} seconds')
