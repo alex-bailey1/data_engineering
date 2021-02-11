@@ -125,7 +125,7 @@ def dbconnect():
         user=DBuser,
         password=DBpwd,
 	)
-	connection.autocommit = True
+	# connection.autocommit = True
 	return connection
 
 # create the target table 
@@ -135,7 +135,7 @@ def createTable(conn):
 	with conn.cursor() as cursor:
 		cursor.execute(f"""
         	DROP TABLE IF EXISTS {TableName};
-        	CREATE TABLE {TableName} (
+        	CREATE UNLOGGED  TABLE {TableName} (
             	Year                INTEGER,
               CensusTract         NUMERIC,
             	State               TEXT,
@@ -192,8 +192,8 @@ def load(conn, icmdlist):
 			# print (cmd)
 			cursor.execute(cmd)
 		
-		cursor.execute(f"ALTER TABLE {TableName} ADD PRIMARY KEY (Year, CensusTract);")
-		cursor.execute(f"CREATE INDEX idx_{TableName}_State ON {TableName}(State);")
+		# cursor.execute(f"ALTER TABLE {TableName} ADD PRIMARY KEY (Year, CensusTract);")
+		# cursor.execute(f"CREATE INDEX idx_{TableName}_State ON {TableName}(State);")
 
 		elapsed = time.perf_counter() - start
 		print(f'Finished Loading. Elapsed Time: {elapsed:0.4} seconds')
