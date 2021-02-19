@@ -135,7 +135,7 @@ def createTable(conn):
 	with conn.cursor() as cursor:
 		cursor.execute(f"""
         	DROP TABLE IF EXISTS {TableName};
-        	CREATE UNLOGGED  TABLE {TableName} (
+        	CREATE  TEMPORARY TABLE {TableName} (
             	Year                INTEGER,
               CensusTract         NUMERIC,
             	State               TEXT,
