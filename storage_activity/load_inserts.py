@@ -3,6 +3,7 @@
 
 import time
 import psycopg2
+import psycopg2.extras
 import argparse
 import re
 import csv
@@ -74,7 +75,7 @@ def row2vals(row):
 		{row['FamilyWork']},             -- FamilyWork
 		{row['Unemployment']}            -- Unemployment
 	"""
-        
+    print(ret)
 	return ret
 
 
@@ -135,7 +136,7 @@ def createTable(conn):
 	with conn.cursor() as cursor:
 		cursor.execute(f"""
         	DROP TABLE IF EXISTS {TableName};
-        	CREATE  TEMPORARY TABLE {TableName} (
+        	CREATE TABLE {TableName} (
             	Year                INTEGER,
               CensusTract         NUMERIC,
             	State               TEXT,
@@ -198,6 +199,13 @@ def load(conn, icmdlist):
 		elapsed = time.perf_counter() - start
 		print(f'Finished Loading. Elapsed Time: {elapsed:0.4} seconds')
 
+def batch_load(conn, data):
+
+	with connection.cursor() as cursor:
+
+		psycopg2.extras.execute_batch(cursor)
+
+
 
 def main():
     initialize()
@@ -205,10 +213,11 @@ def main():
     rlis = readdata(Datafile)
     cmdlist = getSQLcmnds(rlis)
 
-    if CreateDB:
-    	createTable(conn)
+    # if CreateDB:
+    # 	createTable(conn)
 
-    load(conn, cmdlist)
+    # load(conn, cmdlist)
+
 
 
 if __name__ == "__main__":
