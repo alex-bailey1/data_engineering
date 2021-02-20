@@ -203,8 +203,8 @@ def load(conn, icmdlist):
 def batch_load(conn, data):
 
 	with connection.cursor() as cursor:
-
-		psycopg2.extras.execute_batch(cursor)
+		
+		psycopg2.extras.execute_batch(cursor, )
 
 
 
